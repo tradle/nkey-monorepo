@@ -1,0 +1,20 @@
+{
+  "name": "nkey-ec",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "author": "Mark Vayngrib <mark@tradle.io> (http://github.com/mvayngrib)",
+  "license": "MIT",
+  "dependencies": {
+    "elliptic": "^6.2.8",
+    "nkey": "tradle/nkey",
+    "nkey-secp256k1": "tradle/nkey-secp256k1",
+    "xtend": "^4.0.1"
+  },
+  "devDependencies": {
+    "tape": "^4.5.1"
+  }
+}
