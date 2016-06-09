@@ -21,11 +21,13 @@ exports.key = typeforce.compile({
 exports.pub = typeforce.compile({
   type: typeforce.String,
   pub: typeforce.String,
-  priv: typeforce.Null
+  priv: typeforce.Null,
+  fingerprint: typeforce.String,
 })
 
 exports.priv = typeforce.compile({
   type: typeforce.String,
   pub: typeforce.String,
-  priv: typeforce.String
+  priv: typeforce.String,
+  fingerprint: typeforce.String
 })

@@ -38,7 +38,7 @@ function runTests (impl, name, cb) {
   // }
 
   test(`gen (${name})`, function (t) {
-    impl.gen(function (err, key) {
+    impl.gen({}, function (err, key) {
       if (err) throw err
 
       // if (name === 'sync') {
@@ -51,12 +51,18 @@ function runTests (impl, name, cb) {
         typeforce(types.key, key)
       })
 
+      const exported = key.toJSON()
+      t.doesNotThrow(function () {
+        typeforce(types.pub, exported)
+      })
+
+      t.same(impl.fromJSON(exported).toJSON(), exported)
       t.end()
     })
   })
 
   test(`sign (${name})`, function (t) {
-    impl.gen(function (err, key) {
+    impl.gen({}, function (err, key) {
       if (err) throw err
 
       const data = 'blah'
@@ -64,6 +70,7 @@ function runTests (impl, name, cb) {
       key.sign(hash, function (err, sig) {
         if (err) throw err
 
+        key = impl.fromJSON(key.toJSON())
         key.verify(hash, sig, function (err, verified) {
           if (err) throw err
 

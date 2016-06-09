@@ -1,5 +1,7 @@
 'use strict'
 
+const clone = require('xtend')
+
 exports.wrap = wrap
 exports.asyncify = asyncify
 
@@ -9,6 +11,19 @@ function wrap (api) {
       api[method] = asyncify(api[method + 'Sync'])
     }
   })
+
+  if (api.sign && !api.set) {
+    const customProps = {}
+    api.set = function (k, v) {
+      customProps[k] = v
+      return this
+    }
+
+    const toJSON = api.toJSON
+    api.toJSON = function () {
+      return clone(customProps, toJSON.apply(this, arguments))
+    }
+  }
 
   return api
 }
