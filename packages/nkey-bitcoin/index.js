@@ -67,7 +67,7 @@ function fromJSON (opts) {
   // lazy, could be expensive
   Object.defineProperty(api, 'pub', {
     get: function () {
-      return pub || key.pub || key
+      return key.pub || key
     }
   })
 
