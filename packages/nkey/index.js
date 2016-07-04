@@ -1,6 +1,7 @@
 'use strict'
 
 const clone = require('xtend')
+const BASE_PROPS = ['pub', 'priv', 'type']
 
 exports.wrap = wrap
 exports.asyncify = asyncify
@@ -12,16 +13,36 @@ function wrap (api) {
     }
   })
 
-  if (api.sign && !api.set) {
+  if (api.sign && !api.set && !api.get) {
     const customProps = {}
     api.set = function (k, v) {
       customProps[k] = v
       return this
     }
 
+    api.get = function (k) {
+      return customProps[k]
+    }
+
     const toJSON = api.toJSON
     api.toJSON = function () {
       return clone(customProps, toJSON.apply(this, arguments))
+    }
+  }
+
+  if (api.fromJSON) {
+    const fromJSON = api.fromJSON
+    api.fromJSON = function (json) {
+      const result = fromJSON.apply(this, arguments)
+      if (result.set) {
+        Object.keys(json).forEach(k => {
+          if (!result[k] && BASE_PROPS.indexOf(k) === -1) {
+            result.set(k, json[k])
+          }
+        })
+      }
+
+      return result
     }
   }
 
