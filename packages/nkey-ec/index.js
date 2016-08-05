@@ -50,7 +50,7 @@ function normalizeOpts (opts) {
 
 function genSync (opts) {
   const curve = opts.curve
-  return fromJSON({
+  return impl.fromJSON({
     curve: curve,
     priv: getCurve(curve).genKeyPair()
   })
