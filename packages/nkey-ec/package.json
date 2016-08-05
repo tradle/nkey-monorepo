@@ -11,7 +11,7 @@
   "dependencies": {
     "elliptic": "^6.2.8",
     "nkey": "^1.1.0",
-    "nkey-secp256k1": "^1.0.0",
+    "nkey-secp256k1": "^1.1.0",
     "xtend": "^4.0.1"
   },
   "devDependencies": {
