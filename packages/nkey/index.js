@@ -7,6 +7,15 @@ exports.wrap = wrap
 exports.asyncify = asyncify
 
 function wrap (api) {
+  if (api.genSync) {
+    const genSync = api.genSync
+    api.genSync = function () {
+      const result = genSync.apply(this, arguments)
+      result.isPrivateKey = true
+      return result
+    }
+  }
+
   ;['gen', 'sign', 'verify'].forEach(method => {
     if (!api[method] && api[method + 'Sync']) {
       api[method] = asyncify(api[method + 'Sync'])
@@ -42,6 +51,7 @@ function wrap (api) {
         })
       }
 
+      result.isPrivateKey = !!json.priv
       return result
     }
   }

@@ -41,6 +41,8 @@ function runTests (impl, name, cb) {
     impl.gen({}, function (err, key) {
       if (err) throw err
 
+      t.equal(key.isPrivateKey, true)
+
       // if (name === 'sync') {
       //   ;['sign', 'verify'].forEach(method => {
       //     impl[method] = utils.asyncify(impl[method + 'Sync'].bind(impl))
