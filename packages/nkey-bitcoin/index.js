@@ -4,18 +4,19 @@ const crypto = require('crypto')
 const bitcoin = require('@tradle/bitcoinjs-lib')
 const nkey = require('nkey')
 const type = 'bitcoin'
-
-module.exports = exports = nkey.wrap({
+const impl = nkey.wrap({
   type,
   genSync,
   fromJSON
 })
 
+module.exports = exports = impl
+
 exports.DEFAULT_NETWORK = 'bitcoin'
 
 function genSync (opts) {
   const networkName = opts.networkName || exports.DEFAULT_NETWORK
-  return fromJSON({
+  return impl.fromJSON({
     priv: bitcoin.ECKey.makeRandom(),
     networkName
   })
