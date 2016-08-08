@@ -67,12 +67,14 @@ function fromJSON (opts) {
 
   // lazy, could be expensive
   Object.defineProperty(api, 'pub', {
+    enumerable: true,
     get: function () {
       return key.pub || key
     }
   })
 
   Object.defineProperty(api, 'pubKeyString', {
+    enumerable: true,
     get: function () {
       if (!pubKeyString) {
         pubKeyString = api.pub.toHex()
@@ -83,6 +85,7 @@ function fromJSON (opts) {
   })
 
   Object.defineProperty(api, 'fingerprint', {
+    enumerable: true,
     get: function () {
       if (!fingerprint) {
         fingerprint = api.pub.getAddress(network).toString()
