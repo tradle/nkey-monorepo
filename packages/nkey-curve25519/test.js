@@ -1,0 +1,39 @@
+
+const nkey = require('./')
+const test = require('tape')
+const keys = [
+  '7a2db3c7b7ad4b8fe5342640c3c5d881db7a0bc52bb94bd6afe980e13f15d3af',
+  'd6f0177430c68ed662c05a557830488793e185793645d5c737488c2a2791587c',
+  '3d9644165d432216a71ea18fd67a6b28c535f6340f9e75e145030d4194c77d4c',
+  '874a4f8498af318121a38249124d13dbbdbe74841048a7f39cc0cb705314473d',
+  '0612af433b1b8f0a4de2b4cda544bbd28c0e182ca5d9d47545c373a5d8e4be3f',
+  'a2df61c64f1d9be1396b4d99568396443a4d203dbde55afb9e64ebaee60dcaf7',
+  '8fcbe961d83798ddcb9f9eda2b97c0cb8a3c92e795409fe123549ed13affadb3',
+  '0319ecc1fe93823b5a58a21395df34153c8cabf6162d823db403fb6fc960c1fd',
+  '5e307956f15f4bd0c719bd15be14ef2f603dbd92800131dff7eae6b8bd6514d2',
+  'e3bb9bbae1b825319570f1afa246421c6d485de48e2b325eaab904f3285d3410',
+  '1e682c7742a171f94fafce1175e204cc8851a68b649b2f4dfdf99060c1f71814',
+  'f08d4693ba91a9e8eaf58ca884bdd5a83c17b65f3e5d9c3c12c3aa4a832b0c74',
+  '9fe3c9375810ab72e0711d058cf318f0d47caf7534945724e278e25793c500ab',
+  'e1c5f7b14199f1c5845d955b56f57397d4a3cb1b220397c993256bef43a4280d',
+  '951959df14c0c25e6336d6b401f1338a2071e4114a9946b376d3e3acae3168b1',
+  'e43d4919837cda0215ea910a40c11711d2abfd8d97259534863a3405327b514b',
+  'ea64122e1600e2bc32dd3cdffcb2b61b9d9d2cafe8baea7bbb13df00deeced5c',
+  '72244f847cc78dcfd97e244945e33e3f29b6b91d00ebef0e5b8326c623024000',
+  'a8fa9e6c0380f0c7aacd235203fc86a0744fc4d9a6a841941b39acb2b22621c9',
+  '44f3cea34f855c394654c2b1bf7d19d73132a1eed92ee9770f0893bb3013e613'
+]
+
+test('ecdh', function (t) {
+  for (var i = 0; i < keys.length; i+=2) {
+    const a = nkey.fromJSON({ priv: keys[i] })
+    const b = nkey.fromJSON({ priv: keys[i + 1] })
+    const ab = a.ecdh(b.pub)
+    const ba = b.ecdh(a.pub)
+    t.same(ab, ba)
+  }
+
+  t.end()
+})
+
+require('nkey/test')(require('./'))
