@@ -84,8 +84,8 @@ function fromJSON (opts) {
     hasDeterministicSig: true,
     pubKeyString,
     fingerprint,
-    pub: () => pub,
-    priv: () => priv,
+    pub,
+    priv,
     toJSON
   })
 
