@@ -10,7 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@tradle/bitcoinjs-lib": "^1.6.0",
-    "nkey": "^1.1.0"
+    "nkey": "^2.0.0"
   },
   "devDependencies": {
     "tape": "^4.5.1"
