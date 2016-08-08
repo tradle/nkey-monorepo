@@ -5,7 +5,11 @@ const inherits = require('util').inherits
 const EC = require('elliptic').ec
 const extend = require('xtend')
 const nkey = require('nkey')
-const implSecp256k1 = require('nkey-secp256k1')
+const special = {
+  secp256k1: require('nkey-secp256k1'),
+  curve25519: require('nkey-curve25519')
+}
+
 const PUB_PROPS = ['curve', 'pub']
 const curves = {}
 const type = 'ec'
@@ -18,7 +22,7 @@ const impl = nkey.wrap({
 })
 
 function getImpl (opts) {
-  return opts.curve === 'secp256k1' ? implSecp256k1 : impl
+  return special[opts.curve] || impl
 }
 
 module.exports = exports = nkey.wrap({
