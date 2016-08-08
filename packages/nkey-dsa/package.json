@@ -13,6 +13,6 @@
   },
   "dependencies": {
     "@tradle/otr": "^0.2.17",
-    "nkey": "^1.0.0"
+    "nkey": "^2.0.0"
   }
 }
