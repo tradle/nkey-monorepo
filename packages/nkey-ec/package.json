@@ -11,8 +11,8 @@
   "dependencies": {
     "elliptic": "^6.2.8",
     "nkey": "^2.0.0",
-    "nkey-curve25519": "^1.0.0",
-    "nkey-secp256k1": "^1.1.0",
+    "nkey-curve25519": "^1.0.1",
+    "nkey-secp256k1": "^1.1.1",
     "xtend": "^4.0.1"
   },
   "devDependencies": {
