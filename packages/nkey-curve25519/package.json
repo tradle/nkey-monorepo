@@ -10,7 +10,7 @@
   "author": "Mark Vayngrib <mark@tradle.io> (http://github.com/mvayngrib)",
   "license": "MIT",
   "dependencies": {
-    "nkey": "^1.1.0",
+    "nkey": "^2.0.0",
     "tweetnacl": "^0.14.3"
   },
   "devDependencies": {
