@@ -1,6 +1,6 @@
 {
   "name": "nkey-curve25519",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "nkey implementation for curve25519 using tweetnacl",
   "main": "index.js",
   "scripts": {
