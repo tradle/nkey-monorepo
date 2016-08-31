@@ -5,7 +5,7 @@ const BASE_PROPS = ['pub', 'priv', 'type']
 
 exports.wrap = wrap
 exports.wrapAPI = wrapAPI
-exports.wrapInstance = wrap
+exports.wrapInstance = wrapInstance
 exports.asyncify = asyncify
 
 function wrap (obj) {
