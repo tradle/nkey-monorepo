@@ -46,11 +46,26 @@ function wrapAPI (api) {
     if (k === 'genSync') {
       setReadonly(wrapper, 'genSync', function () {
         const result = api[k].apply(api, arguments)
-        result.isPrivateKey = true
+        if (!('isPrivateKey' in result)) {
+          result.isPrivateKey = true
+        }
+
         return result
       })
 
       addAsync(wrapper, 'gen')
+    } else if (k === 'gen') {
+      setReadonly(wrapper, 'gen', function (opts, cb) {
+        api[k](opts, function (err, result) {
+          if (err) return cb(err)
+
+          if (!('isPrivateKey' in result)) {
+            result.isPrivateKey = true
+          }
+
+          cb(null, result)
+        })
+      })
     } else if (k === 'fromJSON') {
       setReadonly(wrapper, 'fromJSON', function (json) {
         const result = api.fromJSON.apply(api, arguments)
@@ -62,7 +77,10 @@ function wrapAPI (api) {
           })
         }
 
-        result.isPrivateKey = !!json.priv
+        if (!('isPrivateKey' in result)) {
+          result.isPrivateKey = !!json.priv
+        }
+
         return result
       })
     } else {
