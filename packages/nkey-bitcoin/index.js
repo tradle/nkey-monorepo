@@ -57,12 +57,14 @@ function fromJSON (opts) {
     type,
     signSync,
     verifySync,
+    privKeyString,
+    toJSON,
     hasDeterministicSig: true,
+    wif: privKeyString
     // pubKeyString,
     // fingerprint,
     // pub,
     // priv,
-    toJSON
   }
 
   // lazy, could be expensive
