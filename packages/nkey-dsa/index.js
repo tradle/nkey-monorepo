@@ -1,9 +1,9 @@
 'use strict'
 
 const crypto = require('crypto')
-const DSA = require('@tradle/otr').DSA
-const BigInt = require('@tradle/otr/vendor/bigint')
-const bits2bigInt = require('@tradle/otr/lib/helpers').bits2bigInt
+const DSA = require('./lib/dsa')
+const BigInt = require('./vendor/bigint')
+const bits2bigInt = require('./lib/helpers').bits2bigInt
 const nkey = require('nkey')
 const type = 'dsa'
 

@@ -1,2 +1,0 @@
-
-require('nkey/test')(require('./'))
