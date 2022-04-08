@@ -1,10 +1,22 @@
 {
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "lerna bootstrap && lerna link && rm -rf packages/*/node_modules",
+    "test": "env NODE_ENV=test lerna run test",
+    "publish:local": "lerna publish --registry http://localhost:4873",
+    "clean": "rm -rf node_modules packages/*/node_modules packages/*/package-lock.json package-lock.json",
+    "publish": "npm run clean && npm i && npm test && lerna publish"
   },
   "license": "MIT",
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "nkey": "file:packages/nkey",
+    "nkey-bitcoin": "file:packages/nkey-bitcoin",
+    "nkey-curve25519": "file:packages/nkey-curve25519",
+    "nkey-dsa": "file:packages/nkey-dsa",
+    "nkey-ec": "file:packages/nkey-ec",
+    "nkey-ecdsa": "file:packages/nkey-ecdsa",
+    "nkey-ethereum": "file:packages/nkey-ethereum",
+    "nkey-secp256k1": "file:packages/nkey-secp256k1"
   },
   "name": "nkey-monorepo"
 }

@@ -11,8 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "key-encoder": "github:mvayngrib/key-encoder-js",
-    "nkey": "^2.0.2",
-    "nkey-secp256k1": "^1.1.1",
+    "nkey": "file:../nkey",
+    "nkey-secp256k1": "file:../nkey-secp256k1",
     "xtend": "^4.0.1"
   },
   "devDependencies": {

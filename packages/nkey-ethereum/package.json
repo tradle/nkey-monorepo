@@ -5,6 +5,6 @@
   "license": "MIT",
   "dependencies": {
     "@tradle/ethereumjs-wallet": "^0.7.0",
-    "nkey": "^2.0.2"
+    "nkey": "file:../nkey"
   }
 }
