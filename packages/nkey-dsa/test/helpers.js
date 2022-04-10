@@ -31,12 +31,4 @@ test('Helpers', function (t) {
     t.end()
   })
 
-  t.test('should pack a counter', function (t) {
-    var thou = HLP.packCtr(1000)
-    t.equal(16, thou.length, '16 bytes.')
-    t.equal(1000, HLP.unpackCtr(thou), 'Thousand.')
-    t.equal('\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00', HLP.packCtr(1))
-    t.end()
-  })
-
 })
