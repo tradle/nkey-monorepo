@@ -1,16 +1,13 @@
 'use strict'
 
 const crypto = require('crypto')
-const inherits = require('util').inherits
 const EC = require('elliptic').ec
-const extend = require('xtend')
 const nkey = require('nkey')
 const special = {
   secp256k1: require('nkey-secp256k1'),
   curve25519: require('nkey-curve25519')
 }
 
-const PUB_PROPS = ['curve', 'pub']
 const curves = {}
 const type = 'ec'
 

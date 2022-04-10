@@ -1,4 +1,3 @@
-const test = require('tape')
 const impl = require('./')
 const testImpl = require('nkey/test')
 testImpl(impl, function () {

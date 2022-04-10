@@ -1,6 +1,5 @@
 'use strict'
 
-const crypto = require('crypto')
 const bitcoin = require('@tradle/bitcoinjs-lib')
 const nkey = require('nkey')
 const type = 'bitcoin'
@@ -50,8 +49,6 @@ function fromJSON (opts) {
     key = pub
   }
 
-  // if (!pubKeyString) pubKeyString = pub.toString('hex')
-
   let fingerprint
   const api = {
     type,
@@ -61,10 +58,6 @@ function fromJSON (opts) {
     toJSON,
     hasDeterministicSig: true,
     wif: privKeyString
-    // pubKeyString,
-    // fingerprint,
-    // pub,
-    // priv,
   }
 
   // lazy, could be expensive

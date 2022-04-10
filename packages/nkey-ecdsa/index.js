@@ -1,7 +1,6 @@
 'use strict'
 
 const crypto = require('crypto')
-const extend = require('xtend')
 const KeyEncoder = require('key-encoder')
 const nkey = require('nkey')
 const special = {
@@ -19,7 +18,6 @@ function createECDH (curve) {
   return crypto.createECDH(curves[curve] || curve)
 }
 
-const PUB_PROPS = ['curve', 'pub']
 const type = 'ec'
 
 const impl = nkey.wrapAPI({

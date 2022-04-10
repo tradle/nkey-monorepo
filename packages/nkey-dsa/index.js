@@ -1,6 +1,5 @@
 'use strict'
 
-const crypto = require('crypto')
 const DSA = require('./lib/dsa')
 const BigInt = require('./vendor/bigint')
 const bits2bigInt = require('./lib/helpers').bits2bigInt

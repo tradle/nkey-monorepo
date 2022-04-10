@@ -32,8 +32,6 @@ function fromJSON (opts) {
     ? Buffer.from(opts.pub, 'hex')
     : opts.pub || (opts.priv && opts.priv.publicKey && Buffer.from(opts.priv.publicKey)) || pubFromPriv(priv)
 
-  const privEnc = typeof priv === 'string' && 'hex'
-  const pubEnc = typeof pub === 'string' && 'hex'
   const pubKeyString = pub.toString('hex')
   const privKeyString = priv && priv.toString('hex')
   const fingerprint = crypto.createHash('sha256').update(pub).digest('hex')
