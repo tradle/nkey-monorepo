@@ -27,8 +27,8 @@ function fromJSON (opts) {
     throw new Error('expected "priv" or "pub"')
   }
 
-  const priv = typeof opts.priv === 'string' ? new Buffer(opts.priv, 'hex') : opts.priv
-  const pub = typeof opts.pub === 'string' ? new Buffer(opts.pub, 'hex') : opts.pub || pubFromPriv(priv)
+  const priv = typeof opts.priv === 'string' ? Buffer.from(opts.priv, 'hex') : opts.priv
+  const pub = typeof opts.pub === 'string' ? Buffer.from(opts.pub, 'hex') : opts.pub || pubFromPriv(priv)
   const privEnc = typeof priv === 'string' && 'hex'
   const pubEnc = typeof pub === 'string' && 'hex'
   const pubKeyString = pub.toString('hex')
@@ -56,11 +56,11 @@ function fromJSON (opts) {
     sig = secp256k1.signatureNormalize(sig.signature)
 
     // Convert to DER array
-    return new Buffer(secp256k1.signatureExport(sig)).toString('hex')
+    return Buffer.from(secp256k1.signatureExport(sig)).toString('hex')
   }
 
   function verifySync (msg, sig) {
-    if (typeof sig === 'string') sig = new Buffer(sig, 'hex')
+    if (typeof sig === 'string') sig = Buffer.from(sig, 'hex')
 
     sig = secp256k1.signatureImport(sig)
     return secp256k1.verify(msg, sig, pub)

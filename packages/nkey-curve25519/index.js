@@ -24,13 +24,13 @@ function fromJSON (opts) {
   }
 
   const priv = typeof opts.priv === 'string'
-    ? new Buffer(opts.priv, 'hex') :
-    opts.priv && opts.priv.secretKey ? new Buffer(opts.priv.secretKey) : opts.priv
+    ? Buffer.from(opts.priv, 'hex') :
+    opts.priv && opts.priv.secretKey ? Buffer.from(opts.priv.secretKey) : opts.priv
 
   const privArr = priv && toUint8Array(priv)
   const pub = typeof opts.pub === 'string'
-    ? new Buffer(opts.pub, 'hex')
-    : opts.pub || (opts.priv && opts.priv.publicKey && new Buffer(opts.priv.publicKey)) || pubFromPriv(priv)
+    ? Buffer.from(opts.pub, 'hex')
+    : opts.pub || (opts.priv && opts.priv.publicKey && Buffer.from(opts.priv.publicKey)) || pubFromPriv(priv)
 
   const privEnc = typeof priv === 'string' && 'hex'
   const pubEnc = typeof pub === 'string' && 'hex'
@@ -49,14 +49,14 @@ function fromJSON (opts) {
 
       pub = toUint8Array(pub)
       const sharedKey = curve25519.before(pub, privArr)
-      return new Buffer(sharedKey)
+      return Buffer.from(sharedKey)
     },
     toJSON
   })
 
   function pubFromPriv (priv) {
     const arr = priv.secretKey || curve25519.keyPair.fromSecretKey(priv).publicKey
-    return new Buffer(arr)
+    return Buffer.from(arr)
   }
 
   function toJSON (exportPrivate) {

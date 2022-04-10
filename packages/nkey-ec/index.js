@@ -73,10 +73,10 @@ function fromJSON (opts) {
 
   const curve = opts.curve
   const ec = getCurve(curve)
-  const priv = typeof opts.priv === 'string' ? new Buffer(opts.priv, 'hex') : opts.priv
-  let pub = typeof opts.pub === 'string' ? new Buffer(opts.pub, 'hex') : opts.pub
+  const priv = typeof opts.priv === 'string' ? Buffer.from(opts.priv, 'hex') : opts.priv
+  let pub = typeof opts.pub === 'string' ? Buffer.from(opts.pub, 'hex') : opts.pub
   const key = priv ? ec.keyFromPrivate(priv) : ec.keyFromPublic(pub)
-  if (!pub) pub = new Buffer(key.getPublic(true, 'buffer'))
+  if (!pub) pub = Buffer.from(key.getPublic(true, 'buffer'))
 
   const pubKeyString = pub.toString('hex')
   const fingerprint = crypto.createHash('sha256').update(pub).digest('hex')
@@ -94,11 +94,11 @@ function fromJSON (opts) {
   })
 
   function signSync (data) {
-    return new Buffer(key.sign(data).toDER()).toString('hex')
+    return Buffer.from(key.sign(data).toDER()).toString('hex')
   }
 
   function verifySync (data, sig) {
-    if (typeof sig === 'string') sig = new Buffer(sig, 'hex')
+    if (typeof sig === 'string') sig = Buffer.from(sig, 'hex')
     return key.verify(data, sig)
   }
 

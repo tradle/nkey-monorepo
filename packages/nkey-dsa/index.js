@@ -33,13 +33,13 @@ function fromJSON (opts) {
     privKeyString = key.packPrivate()
   } else if (typeof opts.pub === 'string') {
     pubKeyString = opts.pub
-    key = DSA.parsePublic(new Buffer(opts.pub, 'base64').toString('binary'))
+    key = DSA.parsePublic(Buffer.from(opts.pub, 'base64').toString('binary'))
   } else {
     key = opts.pub
   }
 
   const priv = opts.priv && key
-  const pub = new Buffer(key.packPublic(), 'binary')
+  const pub = Buffer.from(key.packPublic(), 'binary')
   if (!pubKeyString) {
     pubKeyString = pub.toString('base64')
   }
@@ -80,14 +80,14 @@ function fromJSON (opts) {
 }
 
 function toString (sig) {
-  return new Buffer(
+  return Buffer.from(
     BigInt.bigInt2bits(sig[0], 20) + BigInt.bigInt2bits(sig[1], 20),
     'binary'
   ).toString('base64')
 }
 
 function parseSig (sig) {
-  sig = new Buffer(sig, 'base64').toString('binary')
+  sig = Buffer.from(sig, 'base64').toString('binary')
   var r = bits2bigInt(sig.slice(0, 20))
   var s = bits2bigInt(sig.slice(20))
   return [r, s]

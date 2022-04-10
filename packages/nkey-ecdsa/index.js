@@ -87,10 +87,10 @@ function fromJSON (opts) {
 
   const curve = opts.curve
   const ec = createECDH(curve)
-  const priv = typeof opts.priv === 'string' ? new Buffer(opts.priv, 'hex') : opts.priv
+  const priv = typeof opts.priv === 'string' ? Buffer.from(opts.priv, 'hex') : opts.priv
   if (priv) ec.setPrivateKey(priv)
 
-  let pub = typeof opts.pub === 'string' ? new Buffer(opts.pub, 'hex') : opts.pub
+  let pub = typeof opts.pub === 'string' ? Buffer.from(opts.pub, 'hex') : opts.pub
   if (!pub) pub = ec.getPublicKey()
 
   const pubKeyString = pub.toString('hex')
@@ -132,7 +132,7 @@ function fromJSON (opts) {
       algorithm = exports.DEFAULT_ALGORITHM
     }
 
-    if (typeof sig === 'string') sig = new Buffer(sig, 'hex')
+    if (typeof sig === 'string') sig = Buffer.from(sig, 'hex')
 
     return crypto.createVerify(algorithm).update(data).verify(pub, sig)
   }
