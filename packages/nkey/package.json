@@ -3,8 +3,9 @@
   "version": "2.0.2",
   "description": "API wrapper for cryptographic keys, see nkey-ec, nkey-dsa, nkey-bitcoin, etc.",
   "main": "index.js",
+  "types": "types/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "dtslint types"
   },
   "author": "Mark Vayngrib <mark@tradle.io> (http://github.com/mvayngrib)",
   "license": "MIT",
@@ -15,5 +16,9 @@
   },
   "bugs": {
     "url": "https://github.com/tradle/nkey-monorepo/issues"
+  },
+  "devDependencies": {
+    "dtslint": "^4.2.1",
+    "typescript": "^3.7.7"
   }
 }

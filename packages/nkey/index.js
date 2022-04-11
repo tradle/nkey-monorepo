@@ -6,9 +6,24 @@ exports.wrap = wrap
 exports.wrapAPI = wrapAPI
 exports.wrapInstance = wrapInstance
 exports.asyncify = asyncify
+exports.isPrivateKey = isPrivateKey
+exports.isPublicKey = isPublicKey
+exports.isSignKey = isSignKey
 
 function wrap (obj) {
   return obj.gen || obj.genSync ? wrapAPI(obj) : wrapInstance(obj)
+}
+
+function isPrivateKey (obj) {
+  return obj.isPrivateKey
+}
+
+function isPublicKey (obj) {
+  return !obj.isPrivateKey
+}
+
+function isSignKey (obj) {
+  return obj.isSignKey
 }
 
 function wrapInstance (instance) {
@@ -91,7 +106,12 @@ function wrapAPI (api) {
       setReadonly(wrapper, k, typeof api[k] === 'function' ? api[k].bind(api) : api[k])
     }
   })
-
+  setReadonly(wrapper, 'isPrivateKey', isPrivateKey)
+  setReadonly(wrapper, 'isPublicKey', isPublicKey)
+  setReadonly(wrapper, 'isSignKey', isSignKey)
+  setReadonly(wrapper, 'isMyKey', function (key) {
+    return key.type === api.type
+  })
   return wrapper
 }
 

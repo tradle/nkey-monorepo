@@ -10,7 +10,8 @@
   "license": "MIT",
   "devDependencies": {
     "nkey-testsuite": "file:../nkey-testsuite",
-    "tape": "^5.5.2"
+    "tape": "^5.5.2",
+    "typescript": "^3.7.7"
   },
   "dependencies": {
     "nkey": "file:../nkey"

@@ -21,6 +21,11 @@ module.exports = function nkeyTestSuite (impl, opts, cb) {
   subTest(`${group} gen (sync)`, function (t) {
     const key = impl.genSync({})
     types.key.assert(key)
+    t.equal(typeof key.privKeyString, 'string')
+    t.equal(impl.isPrivateKey(key), true)
+    t.equal(impl.isMyKey(key), true)
+    t.equal(impl.isPublicKey(key), false)
+    t.equal(impl.isSignKey(key), key.isSignKey)
     if (key.isSignKey) {
       t.doesNotThrow(() => types.signKey.assert(key), 'the generated key needs to return a sign key')
     }
@@ -33,6 +38,11 @@ module.exports = function nkeyTestSuite (impl, opts, cb) {
     const key = impl.genSync({})
     const pubKeyJSON = key.toJSON()
     t.doesNotThrow(() => types.pub.assert(pubKeyJSON), 'standard .toJSON() creates a  public key')
+    const pubKey = impl.fromJSON(pubKeyJSON)
+    t.equal(impl.isPrivateKey(pubKey), false)
+    t.equal(impl.isMyKey(pubKey), true)
+    t.equal(impl.isPublicKey(pubKey), true)
+    t.equal(impl.isSignKey(pubKey), pubKey.isSignKey)
     const privKeyJSON = key.toJSON(true)
     t.equals(privKeyJSON.type, impl.type)
     t.doesNotThrow(() => types.priv.assert(privKeyJSON), '.toJSON(true) returns the full private key')
