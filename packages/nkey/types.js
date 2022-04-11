@@ -1,13 +1,13 @@
 
-const typeforce = require('typeforce')
+const typeforce = require('@tradle/typeforce')
 
-exports.keyCl = typeforce.compile({
+exports.keyCl = typeforce.object({
   fromJSON: typeforce.Function,
   gen: typeforce.Function,
   genSync: typeforce.maybe(typeforce.Function)
 })
 
-exports.key = typeforce.compile({
+exports.key = typeforce.object({
   type: typeforce.String,
   pubKeyString: typeforce.String,
   // async
@@ -18,14 +18,14 @@ exports.key = typeforce.compile({
   verifySync: typeforce.maybe(typeforce.Function),
 })
 
-exports.pub = typeforce.compile({
+exports.pub = typeforce.object({
   type: typeforce.String,
   pub: typeforce.String,
   priv: typeforce.Null,
   fingerprint: typeforce.String,
 })
 
-exports.priv = typeforce.compile({
+exports.priv = typeforce.object({
   type: typeforce.String,
   pub: typeforce.String,
   priv: typeforce.String,

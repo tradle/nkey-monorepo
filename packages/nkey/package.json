@@ -9,7 +9,7 @@
   "author": "Mark Vayngrib <mark@tradle.io> (http://github.com/mvayngrib)",
   "license": "MIT",
   "dependencies": {
-    "typeforce": "^1.6.2",
+    "@tradle/typeforce": "^2.2.1",
     "xtend": "^4.0.1"
   },
   "devDependencies": {

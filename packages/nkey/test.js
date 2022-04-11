@@ -1,7 +1,6 @@
 
 const crypto = require('crypto')
 const test = require('tape')
-const typeforce = require('typeforce')
 const types = require('./types')
 const sha256 = function (data) {
   return crypto.createHash('sha256').update(data).digest()
