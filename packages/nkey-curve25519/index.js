@@ -73,14 +73,5 @@ function fromJSON (opts) {
 
 function toUint8Array (buf) {
   if (buf instanceof Uint8Array) return buf
-  if (!Buffer.isBuffer(buf)) {
-    throw new Error('expected Buffer or Uint8Array')
-  }
-
-  var arr = new Uint8Array(buf.length)
-  for (var i = 0; i < buf.length; i++) {
-    arr[i] = buf[i]
-  }
-
-  return arr
+  throw new Error('expected Buffer or Uint8Array')
 }
