@@ -27,6 +27,8 @@ function wrapInstance (instance) {
     }
   })
 
+  setReadonly(wrapper, 'isSignKey', !!wrapper.signSync)
+
   const customProps = {}
   setReadonly(wrapper, 'set', function (k, v) {
     customProps[k] = v
