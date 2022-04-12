@@ -24,7 +24,7 @@ function genSync (opts) {
 }
 
 function fromJSON (json) {
-  const priv = toHexBuffer(json.priv)
+  const priv = json.priv ? toHexBuffer(json.priv) : null
   const pub = toHexBuffer(json.pub)
   const privKeyString = toHexString(json.priv)
   const pubKeyString = toHexString(json.pub)

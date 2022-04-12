@@ -3,9 +3,15 @@
   "name": "nkey-ethereum",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "test": "node test"
+  },
   "dependencies": {
     "@tradle/ethereumjs-wallet": "^0.7.0",
     "nkey": "file:../nkey"
+  },
+  "devDependencies": {
+    "tape": "^5.5.2"
   },
   "homepage": "https://github.com/tradle/nkey-monorepo/tree/master/packages/nkey-ethereum#readme",
   "repository": {
