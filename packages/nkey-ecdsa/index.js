@@ -1,7 +1,7 @@
 'use strict'
 
 const crypto = require('crypto')
-const KeyEncoder = require('key-encoder')
+const { KeyEncoder } = require('@tradle/key-encoder')
 const nkey = require('nkey')
 const special = {
   secp256k1: require('nkey-secp256k1')
