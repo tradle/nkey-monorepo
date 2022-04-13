@@ -20,5 +20,13 @@
   },
   "engines": {
     "node": ">=5.0.0"
+  },
+  "homepage": "https://github.com/tradle/nkey-monorepo/tree/master/packages/nkey-ecdsa#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tradle/nkey-monorepo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tradle/nkey-monorepo/issues"
   }
 }
