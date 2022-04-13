@@ -1,6 +1,5 @@
 'use strict'
 
-const clone = require('xtend')
 const BASE_PROPS = ['pub', 'priv', 'type']
 
 exports.wrap = wrap
@@ -20,7 +19,10 @@ function wrapInstance (instance) {
       addAsync(wrapper, k === 'signSync' ? 'sign' : 'verify')
     } else if (k === 'toJSON') {
       setReadonly(wrapper, 'toJSON', function () {
-        return clone(customProps, instance.toJSON.apply(instance, arguments))
+        return {
+          ...customProps,
+          ...instance.toJSON.apply(instance, arguments)
+        }
       })
     } else {
       setReadonly(wrapper, k, typeof instance[k] === 'function' ? instance[k].bind(instance) : instance[k])

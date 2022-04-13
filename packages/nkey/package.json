@@ -8,9 +8,6 @@
   },
   "author": "Mark Vayngrib <mark@tradle.io> (http://github.com/mvayngrib)",
   "license": "MIT",
-  "dependencies": {
-    "xtend": "^4.0.1"
-  },
   "homepage": "https://github.com/tradle/nkey-monorepo/tree/master/packages/nkey#readme",
   "repository": {
     "type": "git",
