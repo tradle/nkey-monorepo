@@ -1,0 +1,23 @@
+{
+  "name": "nkey-testsuite",
+  "version": "1.0.0",
+  "description": "Testsuite for the nkey implementations",
+  "author": "Martin Heidegger <martin.heidegger@gmail.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'no tests'"
+  },
+  "dependencies": {
+    "@tradle/typeforce": "^2.2.1",
+    "tape": "^5.5.2"
+  },
+  "homepage": "https://github.com/tradle/nkey-monorepo/tree/master/packages/nkey-testsuite#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tradle/nkey-monorepo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tradle/nkey-monorepo/issues"
+  }
+}

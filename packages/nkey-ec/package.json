@@ -15,6 +15,7 @@
     "nkey-secp256k1": "file:../nkey-secp256k1"
   },
   "devDependencies": {
+    "nkey-testsuite": "file:../nkey-testsuite",
     "tape": "^5.5.2"
   },
   "homepage": "https://github.com/tradle/nkey-monorepo/tree/master/packages/nkey-ec#readme",

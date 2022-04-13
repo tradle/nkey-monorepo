@@ -12,6 +12,9 @@
     "nkey": "file:../nkey",
     "secp256k1": "^3.1.0"
   },
+  "devDependencies": {
+    "nkey-testsuite": "file:../nkey-testsuite"
+  },
   "homepage": "https://github.com/tradle/nkey-monorepo/tree/master/packages/nkey-secp256k1#readme",
   "repository": {
     "type": "git",

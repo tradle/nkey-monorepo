@@ -1,4 +1,3 @@
-
 const typeforce = require('@tradle/typeforce')
 
 exports.key = typeforce.object({
@@ -25,7 +24,7 @@ exports.signKey = typeforce.allOf(
     verify: typeforce.Function,
     // sync
     signSync: typeforce.Function,
-    verifySync: typeforce.Function,
+    verifySync: typeforce.Function
   })
 )
 
@@ -34,7 +33,7 @@ exports.pub = typeforce.object({
   type: typeforce.String,
   pub: typeforce.String,
   priv: typeforce.Null,
-  fingerprint: typeforce.String,
+  fingerprint: typeforce.String
 })
 
 // JSON!

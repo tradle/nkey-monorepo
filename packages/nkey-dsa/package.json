@@ -9,7 +9,8 @@
   "author": "Mark Vayngrib <mark@tradle.io> (http://github.com/mvayngrib)",
   "license": "MIT",
   "devDependencies": {
-    "tape": "^4.5.1"
+    "nkey-testsuite": "file:../nkey-testsuite",
+    "tape": "^5.5.2"
   },
   "dependencies": {
     "nkey": "file:../nkey"

@@ -36,4 +36,4 @@ test('ecdh', function (t) {
   t.end()
 })
 
-require('nkey/test')(require('./'))
+require('nkey-testsuite')(require('./'))

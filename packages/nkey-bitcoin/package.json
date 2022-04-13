@@ -12,6 +12,9 @@
     "@tradle/bitcoinjs-lib": "^1.6.0",
     "nkey": "file:../nkey"
   },
+  "devDependencies": {
+    "nkey-testsuite": "file:../nkey-testsuite"
+  },
   "homepage": "https://github.com/tradle/nkey-monorepo/tree/master/packages/nkey-bitcoin#readme",
   "repository": {
     "type": "git",

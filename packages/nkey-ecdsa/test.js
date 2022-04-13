@@ -1,5 +1,5 @@
 const impl = require('./')
-const testSuite = require('nkey/test')
+const testSuite = require('nkey-testsuite')
 const tape = require('tape')
 
 const curves = [

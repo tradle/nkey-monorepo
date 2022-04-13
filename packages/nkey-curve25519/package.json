@@ -14,6 +14,7 @@
     "tweetnacl": "^0.14.3"
   },
   "devDependencies": {
+    "nkey-testsuite": "file:../nkey-testsuite",
     "tape": "^5.5.2"
   },
   "homepage": "https://github.com/tradle/nkey-monorepo/tree/master/packages/nkey-curve25519#readme",

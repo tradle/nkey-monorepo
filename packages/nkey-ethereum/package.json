@@ -10,6 +10,9 @@
     "@tradle/ethereumjs-wallet": "^0.7.0",
     "nkey": "file:../nkey"
   },
+  "devDependencies": {
+    "nkey-testsuite": "file:../nkey-testsuite"
+  },
   "homepage": "https://github.com/tradle/nkey-monorepo/tree/master/packages/nkey-ethereum#readme",
   "repository": {
     "type": "git",

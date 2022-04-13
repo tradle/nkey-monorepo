@@ -18,7 +18,8 @@
     "nkey-ec": "file:packages/nkey-ec",
     "nkey-ecdsa": "file:packages/nkey-ecdsa",
     "nkey-ethereum": "file:packages/nkey-ethereum",
-    "nkey-secp256k1": "file:packages/nkey-secp256k1"
+    "nkey-secp256k1": "file:packages/nkey-secp256k1",
+    "nkey-testsuite": "file:packages/nkey-testsuite"
   },
   "name": "nkey-monorepo"
 }

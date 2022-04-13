@@ -1,2 +1,2 @@
 
-require('nkey/test')(require('..'))
+require('nkey-testsuite')(require('..'))
