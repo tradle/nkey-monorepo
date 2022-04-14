@@ -53,13 +53,10 @@ module.exports = exports = nkey.wrapAPI({
 exports.DEFAULT_CURVE = 'ed25519'
 
 function normalizeOpts (opts) {
-  opts = opts || {}
-  const copy = {}
-  for (var p in opts) copy[p] = opts[p]
-
-  if (!copy.curve) copy.curve = exports.DEFAULT_CURVE
-
-  return copy
+  return {
+    ...opts,
+    curve: opts.curve || exports.DEFAULT_CURVE
+  }
 }
 
 function genSync (opts) {
