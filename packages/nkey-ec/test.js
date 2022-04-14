@@ -5,7 +5,12 @@ const tape = require('tape')
 const curves = [
   'secp256k1',
   'curve25519',
-  'p384'
+  'p192',
+  'p224',
+  'p256',
+  'p384',
+  'p521',
+  'ed25519'
 ]
 const initialCurve = impl.DEFAULT_CURVE
 for (const curve of curves) {

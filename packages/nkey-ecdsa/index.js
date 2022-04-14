@@ -113,7 +113,7 @@ function fromJSON (opts) {
     type,
     signSync,
     verifySync,
-    hasDeterministicSig: true,
+    hasDeterministicSig: false,
     pubKeyString,
     fingerprint,
     pub,

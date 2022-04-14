@@ -53,7 +53,19 @@ module.exports = function nkeyTestSuite (impl, opts, cb) {
     const pubKey  = impl.fromJSON(privKey.toJSON())
     t.ok(pubKey.verifySync(hashBuffer, sig), 'signing can be verified by pubKey')
     t.ok(privKey.verifySync(hashBuffer, sig), 'signing can be verified by privKey')
-    t.end()
+    const sig2 = privKey.signSync(hashBuffer)
+    // Making sure that the deterministic-ness is not tied to the timestamp
+    setTimeout(function () {
+      const sig3 = privKey.signSync(hashBuffer)
+      if (privKey.hasDeterministicSig) {
+        t.same(sig, sig2, 'signature is deterministic #1')
+        t.same(sig, sig3, 'signature is deterministic #2')
+      } else {
+        t.notSame(sig, sig2, 'signature is non-deterministic #1')
+        t.notSame(sig, sig3, 'signature is non-deterministic #2')
+      }
+      t.end()
+    }, 100)
   })
 
   subTest(`${group} set/get extra properties`, function (t) {

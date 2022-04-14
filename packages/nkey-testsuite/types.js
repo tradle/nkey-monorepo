@@ -4,6 +4,7 @@ exports.key = typeforce.object({
   type: typeforce.String,
   pubKeyString: typeforce.String,
   isPrivateKey: typeforce.Boolean,
+  hasDeterministicSig: typeforce.Boolean,
   set: typeforce.Function,
   get: typeforce.Function
 })
