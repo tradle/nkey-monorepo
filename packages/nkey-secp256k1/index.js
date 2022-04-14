@@ -19,18 +19,28 @@ function genSync () {
     priv = crypto.randomBytes(32)
   } while (!secp256k1.privateKeyVerify(priv))
 
-  return impl.fromJSON({ priv })
+  return createKey({
+    priv,
+    pub: secp256k1.publicKeyCreate(priv)
+  })
 }
 
 function fromJSON (opts) {
   if (!(opts.priv || opts.pub)) {
     throw new Error('expected "priv" or "pub"')
   }
+  return createKey({
+    ...opts,
+    pub: typeof opts.pub === 'string' ? Buffer.from(opts.pub, 'hex') : opts.pub,
+    priv: opts.priv && secp256k1.privateKeyImport(Buffer.from(opts.priv, 'hex'))
+  })
+}
 
-  const priv = typeof opts.priv === 'string' ? Buffer.from(opts.priv, 'hex') : opts.priv
-  const pub = typeof opts.pub === 'string' ? Buffer.from(opts.pub, 'hex') : opts.pub || pubFromPriv(priv)
+function createKey (opts) {
+  const priv = opts.priv
+  const pub = opts.pub
+  const privKeyString = priv && secp256k1.privateKeyExport(priv).toString('hex')
   const pubKeyString = pub.toString('hex')
-  const privKeyString = priv && secp256k1.privateKeyExport(priv)
   const fingerprint = crypto.createHash('sha256').update(pub).digest('hex')
 
   return nkey.wrapInstance({
@@ -62,10 +72,6 @@ function fromJSON (opts) {
 
     sig = secp256k1.signatureImport(sig)
     return secp256k1.verify(msg, sig, pub)
-  }
-
-  function pubFromPriv (priv) {
-    return secp256k1.publicKeyCreate(priv)
   }
 
   function toJSON (exportPrivate) {
