@@ -95,10 +95,13 @@ function fromJSON (opts) {
   function signSync (msg) {
     if (!priv) throw new Error('this is a public key')
 
-    return key.sign(msg).toDER()
+    return key.sign(msg).toDER().toString('hex')
   }
 
   function verifySync (msg, sig) {
+    if (typeof sig === 'string') {
+      sig = Buffer.from(sig, 'hex')
+    }
     return api.pub.verify(msg, bitcoin.ECSignature.fromDER(sig))
   }
 

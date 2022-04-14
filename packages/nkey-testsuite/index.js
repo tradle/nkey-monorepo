@@ -49,7 +49,7 @@ module.exports = function nkeyTestSuite (impl, opts, cb) {
     const data = 'blah'
     const hashBuffer = sha256(data)
     const sig = privKey.signSync(hashBuffer)
-    // t.ok(Buffer.isBuffer(sig), 'the signature is a buffer')
+    t.equal(typeof sig, 'string', 'the signature is a string')
     const pubKey  = impl.fromJSON(privKey.toJSON())
     t.ok(pubKey.verifySync(hashBuffer, sig), 'signing can be verified by pubKey')
     t.ok(privKey.verifySync(hashBuffer, sig), 'signing can be verified by privKey')
