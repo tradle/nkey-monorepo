@@ -48,6 +48,7 @@ function createKey (opts) {
     signSync,
     verifySync,
     hasDeterministicSig: true,
+    privKeyString,
     pubKeyString,
     fingerprint,
     pub,

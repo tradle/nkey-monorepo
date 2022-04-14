@@ -33,6 +33,7 @@ function fromJSON (json) {
     type,
     pub,
     priv,
+    privKeyString,
     pubKeyString,
     hasDeterministicSig: false,
     fingerprint,

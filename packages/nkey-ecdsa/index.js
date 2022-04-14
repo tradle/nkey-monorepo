@@ -104,6 +104,7 @@ function fromJSON (opts) {
   if (!pub) pub = ec.getPublicKey()
 
   const pubKeyString = pub.toString('hex')
+  const privKeyString = priv ? priv.toString('hex') : null
   const fingerprint = crypto.createHash('sha256').update(pub).digest('hex')
   const encoder = new KeyEncoder(curve)
   let privPEM
@@ -115,6 +116,7 @@ function fromJSON (opts) {
     verifySync,
     hasDeterministicSig: false,
     pubKeyString,
+    privKeyString,
     fingerprint,
     pub,
     priv,
@@ -155,7 +157,7 @@ function fromJSON (opts) {
       fingerprint
     }
 
-    if (exportPrivateKey) obj.priv = priv.toString('hex')
+    if (exportPrivateKey) obj.priv = privKeyString
 
     return obj
   }

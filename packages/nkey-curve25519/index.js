@@ -38,6 +38,7 @@ function fromJSON (opts) {
 
   return nkey.wrapInstance({
     type,
+    privKeyString,
     pubKeyString,
     fingerprint,
     hasDeterministicSig: false,

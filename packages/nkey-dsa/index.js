@@ -49,6 +49,7 @@ function fromJSON (opts) {
     signSync,
     verifySync,
     hasDeterministicSig: false,
+    privKeyString,
     pubKeyString,
     fingerprint,
     pub,

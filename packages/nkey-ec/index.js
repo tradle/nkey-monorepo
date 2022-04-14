@@ -80,6 +80,7 @@ function fromJSON (opts) {
   if (!pub) pub = Buffer.from(key.getPublic(true, 'buffer'))
 
   const pubKeyString = pub.toString('hex')
+  const privKeyString = priv ? key.getPrivate('hex') : null
   const fingerprint = crypto.createHash('sha256').update(pub).digest('hex')
 
   return nkey.wrapInstance({
@@ -88,6 +89,7 @@ function fromJSON (opts) {
     verifySync,
     hasDeterministicSig: true,
     pubKeyString,
+    privKeyString,
     fingerprint,
     pub,
     priv,
@@ -109,7 +111,7 @@ function fromJSON (opts) {
       fingerprint
     }
 
-    if (exportPrivateKey) obj.priv = key.getPrivate('hex')
+    if (exportPrivateKey) obj.priv = privKeyString
 
     return obj
   }
