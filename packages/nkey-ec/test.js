@@ -1,12 +1,20 @@
 const impl = require('./')
-const testImpl = require('nkey/test')
-testImpl(impl, function () {
-  impl.DEFAULT_CURVE = 'secp256k1'
-  testImpl(impl, function () {
-    impl.DEFAULT_CURVE = 'curve25519'
-    // currently fails because nkey expects sign/verify
-    // and curve25519 is for diffie hellman
-    // test again when nkey is smarter
-    testImpl(impl)
+const testSuite = require('nkey/test')
+const tape = require('tape')
+
+const curves = [
+  'secp256k1',
+  'curve25519',
+  'p384'
+]
+const initialCurve = impl.DEFAULT_CURVE
+for (const curve of curves) {
+  tape(`curve = ${curve}`, t => {
+    impl.DEFAULT_CURVE = curve
+    testSuite(impl, { t, variant: curve }, function () {
+      impl.DEFAULT_CURVE = initialCurve
+      t.end()
+    })
   })
-})
+}
+

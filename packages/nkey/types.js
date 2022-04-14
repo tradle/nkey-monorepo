@@ -1,23 +1,35 @@
 
 const typeforce = require('@tradle/typeforce')
 
-exports.keyCl = typeforce.object({
-  fromJSON: typeforce.Function,
-  gen: typeforce.Function,
-  genSync: typeforce.maybe(typeforce.Function)
-})
-
 exports.key = typeforce.object({
   type: typeforce.String,
   pubKeyString: typeforce.String,
-  // async
-  sign: typeforce.Function,
-  verify: typeforce.Function,
-  // sync
-  signSync: typeforce.maybe(typeforce.Function),
-  verifySync: typeforce.maybe(typeforce.Function),
+  isPrivateKey: typeforce.Boolean,
+  set: typeforce.Function,
+  get: typeforce.Function
 })
 
+exports.keyCl = typeforce.object({
+  type: typeforce.String,
+  fromJSON: typeforce.Function,
+  gen: typeforce.Function,
+  genSync: typeforce.Function
+})
+
+exports.signKey = typeforce.allOf(
+  exports.key,
+  typeforce.compile({
+    isSignKey: typeforce.value(true),
+    // async
+    sign: typeforce.Function,
+    verify: typeforce.Function,
+    // sync
+    signSync: typeforce.Function,
+    verifySync: typeforce.Function,
+  })
+)
+
+// JSON!
 exports.pub = typeforce.object({
   type: typeforce.String,
   pub: typeforce.String,
@@ -25,6 +37,7 @@ exports.pub = typeforce.object({
   fingerprint: typeforce.String,
 })
 
+// JSON!
 exports.priv = typeforce.object({
   type: typeforce.String,
   pub: typeforce.String,

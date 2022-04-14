@@ -1,9 +1,19 @@
 const impl = require('./')
-const testImpl = require('nkey/test')
-testImpl(impl, function () {
-  impl.DEFAULT_CURVE = 'secp256k1'
-  testImpl(impl, function () {
-    impl.DEFAULT_CURVE = 'p256'
-    testImpl(impl)
+const testSuite = require('nkey/test')
+const tape = require('tape')
+
+const curves = [
+  'secp256k1',
+  'p192'
+]
+const initialCurve = impl.DEFAULT_CURVE
+for (const curve of curves) {
+  tape(`curve = ${curve}`, t => {
+    impl.DEFAULT_CURVE = curve
+    testSuite(impl, { t, variant: curve }, function () {
+      impl.DEFAULT_CURVE = initialCurve
+      t.end()
+    })
   })
-})
+}
+
