@@ -21,18 +21,32 @@ function getImpl (opts) {
   return special[opts.curve] || impl
 }
 
-module.exports = exports = nkey.wrap({
-  gen: function (opts, cb) {
-    opts = normalizeOpts(opts)
-    return getImpl(opts).gen(opts, cb)
-  },
+function wrap (key, opts) {
+  const res =  Object.freeze({
+    ...key,
+    type: type,
+    curve: opts.curve,
+    toJSON (exportPrivate) {
+      const json = key.toJSON(exportPrivate)
+      json.type = type
+      json.curve = opts.curve
+      return json
+    }
+  })
+  return res
+}
+
+module.exports = exports = nkey.wrapAPI({
+  type,
   genSync: function (opts) {
     opts = normalizeOpts(opts)
-    return getImpl(opts).genSync(opts)
+    const key = getImpl(opts).genSync(opts)
+    return wrap(key, opts)
   },
   fromJSON: function (json) {
     json = normalizeOpts(json)
-    return getImpl(json).fromJSON(json)
+    const key = getImpl(json).fromJSON(json)
+    return wrap(key, json)
   }
 })
 
@@ -96,8 +110,6 @@ function fromJSON (opts) {
 
   function toJSON (exportPrivateKey) {
     const obj = {
-      type,
-      curve,
       pub: pubKeyString,
       fingerprint
     }

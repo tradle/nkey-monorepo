@@ -3,7 +3,7 @@
 const crypto = require('crypto')
 const curve25519 = require('tweetnacl').box
 const nkey = require('nkey')
-const type = 'ec'
+const type = 'curve25519'
 
 const impl = nkey.wrap({
   type,
@@ -59,8 +59,7 @@ function fromJSON (opts) {
 
   function toJSON (exportPrivate) {
     const obj = {
-      type: 'ec',
-      curve: 'curve25519',
+      type,
       pub: pubKeyString,
       fingerprint
     }

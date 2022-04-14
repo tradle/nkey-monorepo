@@ -18,7 +18,7 @@ function createECDH (curve) {
   return crypto.createECDH(curves[curve] || curve)
 }
 
-const type = 'ec'
+const type = 'ecdsa'
 
 const impl = nkey.wrapAPI({
   type,
@@ -30,14 +30,30 @@ function getImpl (opts) {
   return special[opts.curve] || impl
 }
 
+function wrap (key, opts) {
+  const res =  Object.freeze({
+    ...key,
+    type: type,
+    curve: opts.curve,
+    toJSON (exportPrivate) {
+      const json = key.toJSON(exportPrivate)
+      json.type = type
+      json.curve = opts.curve
+      return json
+    }
+  })
+  return res
+}
+
 module.exports = exports = nkey.wrapAPI({
+  type,
   genSync: function (opts) {
     opts = normalizeOpts(opts)
-    return getImpl(opts).genSync(opts)
+    return wrap(getImpl(opts).genSync(opts), opts)
   },
   fromJSON: function (json) {
     json = normalizeOpts(json)
-    return getImpl(json).fromJSON(json)
+    return wrap(getImpl(json).fromJSON(json), json)
   }
 })
 

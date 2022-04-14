@@ -3,7 +3,7 @@
 const crypto = require('crypto')
 const secp256k1 = require('secp256k1')
 const nkey = require('nkey')
-const type = 'ec'
+const type = 'secp256k1'
 
 const impl = nkey.wrap({
   type,
@@ -70,8 +70,7 @@ function fromJSON (opts) {
 
   function toJSON (exportPrivate) {
     const obj = {
-      type: 'ec',
-      curve: 'secp256k1',
+      type: type,
       pub: pubKeyString,
       fingerprint
     }
