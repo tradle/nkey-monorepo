@@ -75,8 +75,6 @@ function fromJSON (opts) {
     throw new Error('expected "priv" or "pub"')
   }
 
-  if (!opts.curve) throw new Error('expected "curve"')
-
   const curve = opts.curve
   const ec = getCurve(curve)
   const priv = typeof opts.priv === 'string' ? Buffer.from(opts.priv, 'hex') : opts.priv

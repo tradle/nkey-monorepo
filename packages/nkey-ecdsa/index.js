@@ -14,8 +14,13 @@ const curves = {
   p521: 'secp521r1'
 }
 
+const availableCurves = new Set(crypto.getCurves())
 function createECDH (curve) {
-  return crypto.createECDH(curves[curve] || curve)
+  curve = curves[curve] || curve
+  if (!availableCurves.has(curve)) {
+    throw new Error(`curve [${curve}] is not supported by native crypt supported, supported curves are ${Array.from(availableCurves).toString(',')}`)
+  }
+  return crypto.createECDH(curve)
 }
 
 const type = 'ecdsa'
