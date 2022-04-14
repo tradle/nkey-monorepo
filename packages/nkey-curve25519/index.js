@@ -40,6 +40,7 @@ function fromJSON (opts) {
     type,
     pubKeyString,
     fingerprint,
+    hasDeterministicSig: false,
     pub,
     priv,
     ecdh: function (pub) {

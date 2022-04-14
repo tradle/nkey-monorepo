@@ -34,6 +34,7 @@ function fromJSON (json) {
     pub,
     priv,
     pubKeyString,
+    hasDeterministicSig: false,
     fingerprint,
     toJSON: function toJSON (exportPrivate) {
       const obj = {
