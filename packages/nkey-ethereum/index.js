@@ -7,24 +7,11 @@ const UNCOMPRESSED_PREFIX = Buffer.from('04', 'hex')
 
 const impl = nkey.wrapAPI({
   type,
-  gen,
   genSync,
   fromJSON
 })
 
 module.exports = impl
-
-function gen (opts, cb) {
-  process.nextTick(function () {
-    try {
-      var key = genSync(opts)
-    } catch (err) {
-      return cb(err)
-    }
-
-    cb(null, key)
-  })
-}
 
 function genSync (opts) {
   const wallet = Wallet.generate(opts.icapDirect)

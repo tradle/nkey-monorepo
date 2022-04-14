@@ -13,7 +13,6 @@ const type = 'ec'
 
 const impl = nkey.wrap({
   type,
-  gen,
   genSync,
   fromJSON
 })
@@ -55,10 +54,6 @@ function genSync (opts) {
     curve: curve,
     priv: getCurve(curve).genKeyPair()
   })
-}
-
-function gen (opts, cb) {
-  process.nextTick(() => cb(null, genSync(opts)))
 }
 
 function fromJSON (opts) {

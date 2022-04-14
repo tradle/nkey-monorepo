@@ -22,7 +22,6 @@ const type = 'ec'
 
 const impl = nkey.wrapAPI({
   type,
-  gen,
   genSync,
   fromJSON
 })
@@ -32,10 +31,6 @@ function getImpl (opts) {
 }
 
 module.exports = exports = nkey.wrapAPI({
-  gen: function (opts, cb) {
-    opts = normalizeOpts(opts)
-    return getImpl(opts).gen(opts, cb)
-  },
   genSync: function (opts) {
     opts = normalizeOpts(opts)
     return getImpl(opts).genSync(opts)
@@ -70,10 +65,6 @@ function genSync (opts) {
     curve: curve,
     priv: ec.getPrivateKey()
   })
-}
-
-function gen (opts, cb) {
-  process.nextTick(() => cb(null, genSync(opts)))
 }
 
 function fromJSON (opts) {
