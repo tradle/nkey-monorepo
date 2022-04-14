@@ -29,7 +29,7 @@ function fromJSON (json) {
   const privKeyString = toHexString(json.priv)
   const pubKeyString = toHexString(json.pub)
   const fingerprint = json.fingerprint
-  return nkey.wrap({
+  return nkey.wrapInstance({
     type,
     pub,
     priv,

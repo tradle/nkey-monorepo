@@ -5,7 +5,7 @@ const curve25519 = require('tweetnacl').box
 const nkey = require('nkey')
 const type = 'curve25519'
 
-const impl = nkey.wrap({
+const impl = nkey.wrapAPI({
   type,
   genSync,
   fromJSON
@@ -36,7 +36,7 @@ function fromJSON (opts) {
   const privKeyString = priv && priv.toString('hex')
   const fingerprint = crypto.createHash('sha256').update(pub).digest('hex')
 
-  return nkey.wrap({
+  return nkey.wrapInstance({
     type,
     pubKeyString,
     fingerprint,

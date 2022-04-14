@@ -6,7 +6,7 @@ const bits2bigInt = require('./lib/helpers').bits2bigInt
 const nkey = require('nkey')
 const type = 'dsa'
 
-module.exports = nkey.wrap({
+module.exports = nkey.wrapAPI({
   type,
   genSync,
   fromJSON
@@ -44,7 +44,7 @@ function fromJSON (opts) {
   }
 
   const fingerprint = key.fingerprint()
-  return nkey.wrap({
+  return nkey.wrapInstance({
     type,
     signSync,
     verifySync,

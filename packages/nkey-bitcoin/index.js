@@ -3,7 +3,7 @@
 const bitcoin = require('@tradle/bitcoinjs-lib')
 const nkey = require('nkey')
 const type = 'bitcoin'
-const impl = nkey.wrap({
+const impl = nkey.wrapAPI({
   type,
   genSync,
   fromJSON
@@ -90,7 +90,7 @@ function fromJSON (opts) {
     }
   })
 
-  return nkey.wrap(api)
+  return nkey.wrapInstance(api)
 
   function signSync (msg) {
     if (!priv) throw new Error('this is a public key')

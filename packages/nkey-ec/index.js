@@ -11,7 +11,7 @@ const special = {
 const curves = {}
 const type = 'ec'
 
-const impl = nkey.wrap({
+const impl = nkey.wrapAPI({
   type,
   genSync,
   fromJSON
@@ -85,7 +85,7 @@ function fromJSON (opts) {
   const pubKeyString = pub.toString('hex')
   const fingerprint = crypto.createHash('sha256').update(pub).digest('hex')
 
-  return nkey.wrap({
+  return nkey.wrapInstance({
     type,
     signSync,
     verifySync,

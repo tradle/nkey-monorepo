@@ -5,7 +5,7 @@ const secp256k1 = require('secp256k1')
 const nkey = require('nkey')
 const type = 'secp256k1'
 
-const impl = nkey.wrap({
+const impl = nkey.wrapAPI({
   type,
   genSync,
   fromJSON
@@ -33,7 +33,7 @@ function fromJSON (opts) {
   const privKeyString = priv && secp256k1.privateKeyExport(priv)
   const fingerprint = crypto.createHash('sha256').update(pub).digest('hex')
 
-  return nkey.wrap({
+  return nkey.wrapInstance({
     type,
     signSync,
     verifySync,
